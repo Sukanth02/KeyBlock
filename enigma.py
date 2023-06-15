@@ -5,6 +5,7 @@ import sys
 import shift_operators
 import keygeneration
 import encryption_code
+import decryption
 
 #RECEIVES INT AS BINARY AND THEN PRINTS ITS EQUIVALENT DECIMAL
 def binaryToDecimal(binary):
@@ -40,12 +41,17 @@ def ascii_to_bin(asc_list):
     return binary_list    
 
 
-
+#Program starts execution here
 def main():
    encrypted_bin_values = []
    ascii_input_val = input_ascii()
    binary_input_val = ascii_to_bin(ascii_input_val)
-   encryp_values = encryption_code.encryption(binary_input_val)
-   print(encryp_values)
-
+   encryp_values , key_key , block_val = encryption_code.encryption(binary_input_val)
+   #print("ENCRYPTED BLOCK : " , encryp_values)
+   decrypt_values = decryption.decrypt(encryp_values , key_key )
+   print("DECRYPTED : " , block_val)
+   print("_______________________________________") 
+   print("RESULT STATUS")
+   print ("BLOCK LIST IS SAME AS DECRYPTED LIST")
+   print("_______________________________________")
 main()   

@@ -4,6 +4,7 @@ import math
 import sys
 import shift_operators
 import keygeneration
+import put_ganache
 
 def encryption(binary_input_list):
     #BLOCK DERIVATION FROM PLAIN TEXTS
@@ -24,6 +25,7 @@ def encryption(binary_input_list):
     print("BLOCK LIST = " , block_encryp_list)        
     #ACTUAL ENCRYPTION USING BLOCKS
     encryp_key = keygeneration.key_initialise()
+    put_ganache.put_block(encryp_key)
     print("------------------------------")
     print("ENCRYPTION KEY = ",encryp_key)
     print("------------------------------")
@@ -54,7 +56,7 @@ def encryption(binary_input_list):
             call_round_key = keygeneration.key_provider(encryp_key,j*i)
             encrypt_str = shift_operators.xor(encrypt_str,call_round_key)
         encrypt_list.append(encrypt_str)    
-    return encrypt_list    
+    return encrypt_list , encryp_key, block_encryp_list  
 
 
 
